@@ -30,9 +30,9 @@
 
 UML（统一建模语言 Unified Modeling Language）
 
-![](.\src\img\1.png)
+![](./src/img/1.png)
 
-![](.\src\img\2.png)
+![](./src/img/2.png)
 
 ### 设计
 
@@ -135,7 +135,6 @@ UML（统一建模语言 Unified Modeling Language）
 UML类图
 
 ![](./src/img/3.png)
-[看这里](./src/img/3.png)
 
 实现
 
@@ -158,7 +157,7 @@ UML类图
 
 UML类图
 
-![](.\src\img\4.png)
+![](./src/img/4.png)
 
 实现（只能用Java代码来演示UML图的内容）
 
