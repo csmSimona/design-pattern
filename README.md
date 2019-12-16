@@ -138,7 +138,7 @@ UML类图
 
 实现
 
-[工厂模式实现](https://github.com/csmSimona/design-pattern/blob/master/src/index1.js)
+[工厂模式实现](./src/index1.js)
 
 使用场景
 
