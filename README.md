@@ -1,4 +1,4 @@
-# design-pattern
+# Javascript 设计模式
 
 这里是本人学习JavaScript设计模式的学习笔记
 
@@ -159,9 +159,29 @@ UML类图
 
 ![](./src/img/4.png)
 
-实现（只能用Java代码来演示UML图的内容）
+实现
+
+[单例模式实现](./src/index2.js)
 
 使用场景
+
+- JQuery只有一个$
+
+  ```js
+  if (window.jQuery != null) {
+      return window.jQuery
+  } else {
+      // 初始化...
+  }
+  ```
+
+- 登录框
+
+  [模拟实现登录框](./src/index3.js)
+
+- 购物车
+
+- vuex和redux中的store
 
 ### 适配器模式
 
