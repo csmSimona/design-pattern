@@ -1,4 +1,4 @@
-// 工厂模式
+// 实现工厂模式
 class Product {
     constructor(name) {
         this.name = name

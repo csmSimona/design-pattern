@@ -1,4 +1,4 @@
-// 单例模式实现
+// 实现单例模式
 class SingleObject {
     login() {
         console.log('login')

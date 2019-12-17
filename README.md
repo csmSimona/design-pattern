@@ -127,20 +127,20 @@ UML（统一建模语言 Unified Modeling Language）
 
 ### 工厂模式
 
-概念
+**概念**
 
 - 将new单独封装
 - 遇到new时，就要考虑是否该使用工厂模式
 
-UML类图
+**UML类图**
 
 ![](./src/img/3.png)
 
-实现
+**实现**
 
-[工厂模式实现](./src/index1.js)
+[实现工厂模式](./src/index1.js)
 
-使用场景
+**使用场景**
 
 - JQuery-$('div')
 - React.createElement
@@ -148,22 +148,60 @@ UML类图
 
 ### 单例模式
 
-概念
+**概念**
 
-- 系统中被唯一使用
-- 一个类只有一个实例
+- 保证一个类仅有一个实例，并提供全局访问
 - 单例模式需要用到Java的特性（private）
-- ES6中没有（typescript除外）
+- 现阶段JavaScript中还没有 private（typescript除外）
 
-UML类图
+**特点**
+
+- 单例类只能有一个实例
+
+- 单例类必须自己创建自己的唯一实例
+
+- 单例类必须给所有其他对象提供这一实例
+
+**主要解决：**一个全局使用的类频繁地创建与销毁。
+
+**UML类图**
 
 ![](./src/img/4.png)
 
-实现
+**实现**
 
-[单例模式实现](./src/index2.js)
+[实现单例模式](./src/index2.js)：这种方法相对简单，但他增加了这个类的“不透明性”，SingleObject类的使用者必须知道这是一个单例类，跟以往通过new XXX的方式不同，这里需要使用SingleObject.getInstance来获取对象
 
-使用场景
+[透明的单例模式](./src/index3.js)：用户从这个类中创建对象的时候，可以像使用其他任何普通类一样。但是，为了把instance封装起来，使用了自执行的匿名函数和闭包，并且让这个匿名函数返回了真正的Singleton构造方法，这增加了一些程序的复杂度，阅读起来也不是很舒服
+
+[用代理实现单例模式](./src/index4.js)：解决上面的问题，优秀
+
+**惰性单例**
+
+- 惰性单例指的是在需要的时候才创建对象实例
+
+- 惰性单例是单例模式的重点，这种技术在实际开发中非常有用
+
+- 上面的 [实现单例模式](./src/index2.js) 就是这种技术，instance实例对象总是在我们调用SingleObject.getInstance时才被创建，而不是在页面加载好的时候就创建
+
+- [使用惰性单例实现弹框](./src/useCase1.js)
+
+- **通用的惰性单例**
+
+  可以将创建各种对象的方法用参数fn的形式传入getSingle，之后getSingle再返回一个新的函数，并且用一个变量result来保存fn的计算结果
+
+  ```javascript
+  var getSingle = function(fn){
+      var result;
+      return function(){
+          return result || (result = fn.apply(this, arguments));
+      }
+  };
+  ```
+
+- [用通用的惰性单例改造前面的弹框](./src/useCase2.js)
+
+**使用场景**
 
 - JQuery只有一个$
 
@@ -177,11 +215,17 @@ UML类图
 
 - 登录框
 
-  [模拟实现登录框](./src/index3.js)
+  [模拟实现登录框](./src/useCase3.js)
 
 - 购物车
 
 - vuex和redux中的store
+
+- 线程池
+
+- 全局缓存
+
+- 浏览器中的window对象
 
 ### 适配器模式
 

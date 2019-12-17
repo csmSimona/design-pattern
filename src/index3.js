@@ -1,38 +1,31 @@
-// 单例模式-模拟登录框
-class LoginForm {
-    constructor () {
-        this.state = 'hide'
-    }
-    show() {
-        if (this.state === 'show') {
-            console.log('已经显示')
-            return
+// 透明的单例模式
+
+// 例:使用CreateDiv单例类，在页面中创建唯一的div节点
+var CreateDiv = (function(){
+    var instance
+    
+    // CreateDiv的构造函数实际上负责了两件事情
+    // 第一是创建对象和执行初始化init方法，第二是保证只有一个对象
+    // 违反了单一职责原则，不太好
+    var CreateDiv = function(html) {
+        if (instance) {
+            return instance
         }
-        this.state = 'show'
-        console.log('登录框显示')
+        this.html = html
+        this.init()
+        return instance = this
     }
-    hide() {
-        if (this.state === 'hide') {
-            console.log('已经隐藏')
-            return
-        }
-        this.state = 'hide'
-        console.log('登录框隐藏')
+
+    CreateDiv.prototype.init = function() {
+        var div = document.createElement('div')
+        div.innerHTML = this.html
+        document.body.appendChild(div)
     }
-}
-LoginForm.getIntance = (function() {
-    let instance
-    return function() {
-        if (!instance) {
-            instance = new LoginForm()
-        }
-        return instance
-    }
+
+    return CreateDiv
 })()
 
-// 测试
-let login1 = LoginForm.getIntance()
-login1.show() // 登录框显示
-let login2 = LoginForm.getIntance()
-login2.show() // 已经显示
-console.log(login1 === login2) // true
+var a = new CreateDiv('div1')
+var b = new CreateDiv('div2')
+console.log(a === b)
+
